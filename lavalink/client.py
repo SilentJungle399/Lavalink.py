@@ -125,7 +125,7 @@ class Client:
         if not self.node_manager.available_nodes:
             raise NodeException('No available nodes!')
         node = node or random.choice(self.node_manager.available_nodes)
-        destination = 'http://{}:{}/loadtracks?identifier={}'.format(node.host, node.port, quote(query))
+        destination = 'https://{}{}/loadtracks?identifier={}'.format(node.host, ":"+ str(node.port) if node.port != 80 else '', quote(query))
         headers = {
             'Authorization': node.password
         }
@@ -158,7 +158,7 @@ class Client:
         if not self.node_manager.available_nodes:
             raise NodeException('No available nodes!')
         node = node or random.choice(self.node_manager.available_nodes)
-        destination = 'http://{}:{}/decodetrack?track={}'.format(node.host, node.port, track)
+        destination = 'https://{}{}/decodetrack?track={}'.format(node.host, ":"+ str(node.port) if node.port != 80 else '', track)
         headers = {
             'Authorization': node.password
         }
@@ -191,7 +191,7 @@ class Client:
         if not self.node_manager.available_nodes:
             raise NodeException('No available nodes!')
         node = node or random.choice(self.node_manager.available_nodes)
-        destination = 'http://{}:{}/decodetracks'.format(node.host, node.port)
+        destination = 'https://{}{}/decodetracks'.format(node.host, ":"+ str(node.port) if node.port != 80 else '')
         headers = {
             'Authorization': node.password
         }
@@ -219,7 +219,7 @@ class Client:
         :class:`dict`
             A dict representing the routeplanner information.
         """
-        destination = 'http://{}:{}/routeplanner/status'.format(node.host, node.port)
+        destination = 'https://{}{}/routeplanner/status'.format(node.host, ":"+ str(node.port) if node.port != 80 else '')
         headers = {
             'Authorization': node.password
         }
@@ -249,7 +249,7 @@ class Client:
         :class:`bool`
             True if the address was freed, False otherwise.
         """
-        destination = 'http://{}:{}/routeplanner/free/address'.format(node.host, node.port)
+        destination = 'https://{}{}/routeplanner/free/address'.format(node.host, ":"+ str(node.port) if node.port != 80 else '')
         headers = {
             'Authorization': node.password
         }
@@ -271,7 +271,7 @@ class Client:
         :class:`bool`
             True if all failing addresses were freed, False otherwise.
         """
-        destination = 'http://{}:{}/routeplanner/free/all'.format(node.host, node.port)
+        destination = 'http://{}{}/routeplanner/free/all'.format(node.host, ":"+ str(node.port) if node.port != 80 else '')
         headers = {
             'Authorization': node.password
         }

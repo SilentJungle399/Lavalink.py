@@ -63,7 +63,7 @@ class WebSocket:
                                         'connection ({}/{})...'.format(self._node.name, attempt, max_attempts_str))
 
             try:
-                self._ws = await self._session.ws_connect('ws://{}:{}'.format(self._host, self._port), headers=headers,
+                self._ws = await self._session.ws_connect('wss://{}{}'.format(self._host, ":"+str(self._port) if self._port != 80 else ''), headers=headers,
                                                           heartbeat=60)
             except (aiohttp.ClientConnectorError, aiohttp.WSServerHandshakeError, aiohttp.ServerDisconnectedError) as ce:
                 if isinstance(ce, aiohttp.ClientConnectorError):
